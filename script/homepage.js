@@ -1,6 +1,6 @@
 let openIssues = [];
 let closedIssues = [];
-
+let allIssues=[];
 // 6
 // manage spinner 
 const manageSpinner=(status)=>{
@@ -67,7 +67,7 @@ fetch(url)
   .then((res) => res.json())
   .then((data) =>{
     manageSpinner(false)
-    const allIssues=data.data;
+     allIssues=data.data;
      displayIssue(allIssues)
 
    openIssues = allIssues.filter(issue => issue.status ==="open")
@@ -77,6 +77,7 @@ fetch(url)
 
 
 const displayIssue = (issues) => {
+  counter(issues);
   // get container and empty it 
   const parentContainer = document.getElementById("card-container")
   parentContainer.innerHTML = ""
@@ -221,15 +222,24 @@ document.getElementById("search-btn").addEventListener("click",()=>{
 
 // 8
 document.getElementById("open-btn").addEventListener("click",()=>{
+  
 displayIssue(openIssues)
+
 })
 
 
 
 document.getElementById("close-btn").addEventListener("click",()=>{
+
   displayIssue(closedIssues)
 })
 
 
 
 
+// counter
+
+const counter = (issuesArray) => {
+  const count = document.getElementById("counter");
+  count.innerText = issuesArray.length;
+};
