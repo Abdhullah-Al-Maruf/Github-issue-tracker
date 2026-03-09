@@ -1,3 +1,6 @@
+let openIssues = [];
+let closedIssues = [];
+
 // 6
 // manage spinner 
 const manageSpinner=(status)=>{
@@ -12,10 +15,6 @@ const manageSpinner=(status)=>{
     }
 
 }
-
-
-
-
 
 // 1 btn toggling
 const tabs = document.querySelectorAll(".tab-btn")
@@ -68,7 +67,11 @@ fetch(url)
   .then((res) => res.json())
   .then((data) =>{
     manageSpinner(false)
-     displayIssue(data.data)
+    const allIssues=data.data;
+     displayIssue(allIssues)
+
+   openIssues = allIssues.filter(issue => issue.status ==="open")
+   closedIssues = allIssues.filter(issue => issue.status ==="closed")  
   })
 
 
@@ -142,7 +145,7 @@ const displayDetails = (details) => {
     <div>
       <h2 class="font-semibold text-xl">${details.title}</h2>
 
-      <div class="mt-2>
+      <div class="mt-2">
         <span class="${details.status === 'open' 
         ? 'bg-green-600 text-white rounded-md p-1' 
         : 'bg-red-600 text-white rounded-md p-1'}">
@@ -216,6 +219,16 @@ document.getElementById("search-btn").addEventListener("click",()=>{
 
 
 
+// 8
+document.getElementById("open-btn").addEventListener("click",()=>{
+displayIssue(openIssues)
+})
+
+
+
+document.getElementById("close-btn").addEventListener("click",()=>{
+  displayIssue(closedIssues)
+})
 
 
 
