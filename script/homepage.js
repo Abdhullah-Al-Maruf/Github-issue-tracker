@@ -1,4 +1,4 @@
-// 
+// 6
 // manage spinner 
 const manageSpinner=(status)=>{
     if (status ===true) {
@@ -12,6 +12,7 @@ const manageSpinner=(status)=>{
     }
 
 }
+
 
 
 
@@ -182,6 +183,37 @@ const displayDetails = (details) => {
   // this is for show modal
   document.getElementById("word_details_modal").showModal();
 }
+
+
+
+//7  search
+document.getElementById("search-btn").addEventListener("click",()=>{
+    // document.getElementById("input-search").value=""
+    const searchInput=document.getElementById("search-input")
+    // get the value from the search
+    const inputValue=searchInput.value.trim().toLowerCase();
+    // fetch the data from api
+    manageSpinner(true)
+    const url="https://phi-lab-server.vercel.app/api/v1/lab/issues"
+    fetch(url)
+    .then((res)=>res.json())
+    .then((data)=> {
+        // get all data
+        const allData=data.data;
+        //filter all word 
+        const filterwords=allData.filter((word)=>
+            word.title.toLowerCase().includes(inputValue)
+        );
+        
+        manageSpinner(false)
+        displayIssue(filterwords);
+
+
+    } )
+
+    
+})
+
 
 
 
