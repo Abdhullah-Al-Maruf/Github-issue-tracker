@@ -41,7 +41,7 @@
                     class="input input-bordered w-24 md:w-auto" />
                 <button id="search-btn" class="btn btn-primary">+ New issue</button>
             </div>
-                <a class="btn mr-2 ml-2" href="./index.html"><i class="fa-solid fa-right-from-bracket"></i></a>            
+            <a class="btn mr-2 ml-2" href="./index.html"><i class="fa-solid fa-right-from-bracket"></i></a>
         </div>
     </header>
 
@@ -87,11 +87,29 @@
             </div>
         </section>
         <!-- issue card section -->
-        <section id="card-container" class="mt-1  bg-white p-5  rounded-md  grid md:grid-cols-2 lg:grid-cols-4 gap-3 shadow-xl">
-          
+        <section id="card-container"
+            class="mt-1  bg-white p-5  rounded-md  grid md:grid-cols-2 lg:grid-cols-4 gap-4  shadow-xl">
+
 
         </section>
-             
+
+
+        <!-- modal part -->
+        <!-- Open the modal using ID.showModal() method -->
+        <dialog id="word_details_modal" class="modal modal-bottom sm:modal-middle">
+            <div class="modal-box">
+
+                <div id="parent-container">
+
+                </div>
+                <div class="modal-action">
+                    <form method="dialog">
+                        <!-- if there is a button in form, it will close the modal -->
+                        <button class="btn btn-primary">Close</button>
+                    </form>
+                </div>
+            </div>
+        </dialog>
 
 
     </main>
@@ -100,4 +118,3 @@
 </body>
 
 </html>
-
