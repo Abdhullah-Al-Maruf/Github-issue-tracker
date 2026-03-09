@@ -1,3 +1,21 @@
+// 
+// manage spinner 
+const manageSpinner=(status)=>{
+    if (status ===true) {
+        document.getElementById("spinner").classList.remove("hidden");
+        document.getElementById("card-container").classList.add("hidden")
+
+    }else{
+        document.getElementById( "card-container").classList.remove("hidden");
+        document.getElementById("spinner").classList.add("hidden")
+
+    }
+
+}
+
+
+
+
 // 1 btn toggling
 const tabs = document.querySelectorAll(".tab-btn")
 tabs.forEach(tab => {
@@ -43,11 +61,14 @@ const labelshow = (array) => {
 
 
 // // 2 card section
-
+manageSpinner(true)
 const url = "https://phi-lab-server.vercel.app/api/v1/lab/issues"
 fetch(url)
   .then((res) => res.json())
-  .then((data) => displayIssue(data.data))
+  .then((data) =>{
+    manageSpinner(false)
+     displayIssue(data.data)
+  })
 
 
 
